@@ -1,0 +1,41 @@
+--Create a clothing store database
+
+CREATE TABLE clothing_store
+(id INTEGER, name TEXT ,quantity INTEGER , price INTEGER, color TEXT);
+
+INSERT INTO clothing_store
+VALUES
+(1, "tshirt1", 2 , 3 , "black"),
+(2, "tshirt2", 3 , 3 , "pink"),
+(3, "tshirt3", 5 , 3 , "beige"),
+(4, "jeans1", 6 , 7 , "blue"),
+(5, "jeans2", 2 , 6 , "black"),
+(6, "jeans3", 3 , 5 , "maroon"),
+(7, "skirt1", 3 , 4 , "black"),
+(8, "skirt2", 2 , 5 , "pink"),
+(9, "skirt3", 1 , 7 , "red"),
+(10, "dress1" , 10 , 22 , "pink"),
+(11, "dress2", 4 , 15 , "black"),
+(12, "dress3", 5 , 20 , "white"),
+(13, "dress4", 4 , 15 , "red"),
+(14, "fitwear1", 7 , 10 , "grey"),
+(15, "fitwear2", 6 , 9 , "black");
+
+--display database ordered by price
+SELECT * FROM clothing_store
+ORDER BY price DESC;
+
+--display database with sum of item quantities that are color black
+SELECT color , SUM(quantity) 
+FROM clothing_store
+WHERE color = "black";
+
+--display database with average price of all items in store
+SELECT AVG(price) 
+FROM clothing_store;
+
+--display database with items that are 10 dollars or more
+SELECT *
+FROM clothing_store
+WHERE price >= 10
+ORDER BY price desc;
