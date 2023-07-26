@@ -1,0 +1,64 @@
+/* FAMOUS PEOPLE TABLE */
+CREATE TABLE famous_people (
+  id INTEGER PRIMARY KEY,
+  name TEXT,
+  profession TEXT,
+  nationality TEXT);
+  
+INSERT INTO famous_people (id, name, profession, nationality)
+VALUES
+  (1, 'Albert Einstein', 'Physicist', 'German-American'),
+  (2, 'Marie Curie', 'Chemist', 'Polish-French'),
+  (3, 'William Shakespeare', 'Playwright', 'English'),
+  (4, 'Nelson Mandela', 'Activist', 'South African'),
+  (5, 'Leonardo da Vinci', 'Artist', 'Italian'),
+  (6, 'Isaac Newton', 'Physicist', 'English'),
+  (7, 'Rosa Parks', 'Civil Rights Activist', 'American'),
+  (8, 'Wolfgang Amadeus Mozart', 'Composer', 'Austrian'),
+  (9, 'Frida Kahlo', 'Artist', 'Mexican'),
+  (10, 'Martin Luther King Jr.', 'Civil Rights Leader', 'American'),
+  (11, 'Jane Austen', 'Author', 'English'),
+  (12, 'Pablo Picasso', 'Artist', 'Spanish'),
+  (13, 'Amelia Earhart', 'Aviator', 'American'),
+  (14, 'Mahatma Gandhi', 'Political Leader', 'Indian'),
+  (15, 'Coco Chanel', 'Fashion Designer', 'French'),
+  (16, 'Kim Kardashian', 'Model', 'Armenian');
+ 
+ /*ACTIVITIES Table*/
+CREATE TABLE activities (
+  id INTEGER PRIMARY KEY,
+  activity_name TEXT,
+  author_id INTEGER
+);
+
+INSERT INTO activities (id, activity_name , author_id)
+VALUES
+  (1, 'Theory of General Relativity',1),
+  (2, 'Radioactivity Research',2),
+  (3, 'Literary Works',3),
+  (4, 'Civil Rights Activism',4),
+  (5, 'Mona Lisa Painting',5),
+  (6, 'Law of Universal Gravitation',6),
+  (7, 'Bus Boycott Activism',7),
+  (8, 'The Magic Flute Composition',8),
+  (9, 'Self-Portrait Painting', 9),
+  (10, 'I Have a Dream Speech', 10),
+  (11, 'Pride and Prejudice Novel',11), 
+  (12, 'Les Demoiselles d\Avignon Painting', 12),
+  (13, 'Transatlantic Solo Flight',13),
+  (14, 'Nonviolent Resistance Movement',14), 
+  (15, 'Chanel No. 5 Perfume Creation', 15); 
+  
+  /*JOIN QUERY*/
+  SELECT a.name , b.activity_name
+  FROM famous_people a
+  JOIN activities b
+  ON a.id = b.author_id;
+  
+    /*LEFT OUTER JOIN QUERY*/
+  SELECT a.name , b.activity_name
+  FROM famous_people a
+  LEFT OUTER JOIN activities b
+  ON a.id = b.author_id;
+
+ 
