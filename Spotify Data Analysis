@@ -1,0 +1,88 @@
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+song_key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+song_mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness decimal(8,7) NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL )
+
+
+SELECT * FROM BIT_DB.Spotifydata;
+
+/*Write a SQL query to retrieve all columns for tracks with a popularity greater than 80.*/
+
+SELECT * 
+FROM BIT_DB.Spotifydata
+WHERE popularity > 80;
+
+/*Write a SQL query to calculate the average danceability, energy, and valence for all tracks in the table.*/
+SELECT AVG(danceability) , AVG(energy) , AVG(valence)
+FROM BIT_DB.Spotifydata;
+
+/*Write a SQL query to find the top 5 artists with the highest average loudness for their tracks.*/
+SELECT artist_name , AVG(loudness)
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY AVG(loudness) DESC
+LIMIT 5;
+
+/*Write a SQL query to count the number of tracks in each time 
+signature and order the results by the count in descending order.*/
+SELECT COUNT(*) , time_signature
+FROM BIT_DB.Spotifydata
+GROUP BY time_signature
+ORDER BY COUNT(track_id) DESC;
+
+/*Write a SQL query to find the track with the highest tempo.*/
+SELECT track_name ,  MAX(tempo)
+FROM BIT_DB.Spotifydata;
+
+/*Write a SQL query to calculate the average popularity 
+of tracks for each artist and 
+return only those artists with an average popularity 
+greater than 85.*/
+SELECT artist_name , AVG(popularity) AS AveragePopularity
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+HAVING AveragePopularity > 85;
+
+/*Write a SQL query to 
+find the artist with the 
+most tracks in the table.*/
+SELECT artist_name , COUNT(track_id)
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY COUNT(track_id) DESC
+LIMIT 1;
+
+/*Write a SQL query to calculate 
+the total duration of all tracks (in minutes).*/
+SELECT SUM(duration_ms)/60000 AS TotalMinutes
+FROM BIT_DB.Spotifydata;
+
+/*Write a SQL query to find the track with the lowest speechiness
+ and the track with the highest speechiness.*/
+SELECT track_name , MIN(speechiness)
+FROM BIT_DB.Spotifydata;
+SELECT track_name , MAX(speechiness)
+FROM BIT_DB.Spotifydata;
+
+/*Write a SQL query to retrieve the top 10 tracks 
+with the highest acousticness and 
+their corresponding artist names.*/
+SELECT artist_name , track_name
+FROM BIT_DB.Spotifydata
+ORDER BY acousticness DESC
+LIMIT 10;
